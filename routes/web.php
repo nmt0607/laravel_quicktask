@@ -27,4 +27,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('add-task-list/{id}', 'UserController@listTaskCanAdd')->name('add_task_list');
     Route::post('add-task-user/{id}', 'UserController@addTaskToUser')->name('add_task_user');
     Route::delete('remove-task-user/{id}', 'UserController@removeTaskFromUser')->name('remove_task_user');
+    Route::get('language/{locale}','Localization@locate');
   });

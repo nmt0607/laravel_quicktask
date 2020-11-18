@@ -22,7 +22,7 @@
                         <a class="navbar-brand" href="{{ route('task_list') }}">
                             @lang('messages.tasklist')
                         </a>
-                    </div>                   
+                    </div>                                      
                 </div>
             </div>
         </nav>
