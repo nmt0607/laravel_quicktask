@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="{{ app()->getLocale() }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">     
         <title>@lang('messages.quicktask')</title>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{ asset('bower_components/font-awesome/css/font-awesome.min.css') }}" rel='stylesheet' type='text/css'>
+        <link href="{{ asset('bower_components/lato-font/css/lato-font.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/mycss.css') }}" rel="stylesheet"> 
     </head>
@@ -27,8 +27,7 @@
             </div>
         </nav>
         @yield('content')
+        <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/myjs.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     </body>
 </html>

@@ -1,0 +1,22 @@
+{
+  "name": "laravel_quicktask",
+  "description": "",
+  "main": "",
+  "authors": [
+    "nmt.0607 <nmt.060708@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/nmt0607/laravel_quicktask",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "3.3.6",
+    "Font-Awesome": "^5.15.1",
+    "components-font-awesome": "^5.15.1"
+  }
+}
