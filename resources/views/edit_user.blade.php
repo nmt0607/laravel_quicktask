@@ -6,8 +6,9 @@
     <div class="col-sm-offset-2 col-sm-8">
         <div class="panel panel-default">
             <div class="panel-heading">
+                @include('common.errors')
                 <form action="{{ route('update_user', ['id' => $user->id]) }}" method="POST">
-                    {{ csrf_field() }}  
+                    @csrf  
                     <label for="task-name" class="col-sm-1 control-label">@lang('messages.user')</label> 
                     <div class="col-sm-4">
                         <input type="text" name="name" class="form-control" value="{{ $user->name }}">
@@ -49,7 +50,7 @@
                     @endif
                 </table>
                 <form action="{{ route('add_task_list', ['id' => $user->id]) }}" method="GET" class="form-horizontal">
-                    {{ csrf_field() }}
+                    @csrf
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-6">
                             <button type="submit" class="btn btn-default">

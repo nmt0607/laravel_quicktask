@@ -38,7 +38,7 @@ class TaskController extends Controller
     {      
         $task = Task::find($id);
         if (isset($task)) {
-            $userBelongsTo = $task->users()->get();
+            $userBelongsTo = $task->users;
 
             return view('task_detail', [
                 'task' => $task,
@@ -53,7 +53,7 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
         if (isset($task)) {
-            $userBelongsTo = $task->users()->get();
+            $userBelongsTo = $task->users;
             
             return view('edit_task', [
                 'task' => $task,
@@ -69,12 +69,52 @@ class TaskController extends Controller
         $task = Task::find($id);     
         if (isset($task)) {
             $task->update($request->all());
-            $userBelongsTo = $task->users()->get();
+            $userBelongsTo = $task->users;
 
             return view('task_detail', [
                 'task' => $task,
                 'users' => $userBelongsTo,
             ]);
+        } else {
+            return redirect()->route('task_list')->withErrors(trans('messages.tasknotexist'));
+        }
+    }
+
+    public function listUserCanAdd($id) 
+    {
+        $task = Task::find($id);
+        if (isset($task)) {
+            $userBelongsTo = $task->users;
+            $user = User::all();
+            $userDontBelongsTo = $user->diff($userBelongsTo);
+
+            return view('add_user_task', [
+                'task' => $task,
+                'users' => $userDontBelongsTo,
+            ]);
+        } else {
+            return redirect()->route('task_list')->withErrors(trans('messages.tasknotexist'));
+        }
+    }
+
+    public function addUserToTask($id, Request $request)
+    {
+        if (isset($request->user)) {
+            $task = Task::find($id);
+            $task->users()->attach($request->user);
+
+            return redirect()->route('task_detail', ['id' => $task->id]);
+        } else
+            return redirect()->route('task_detail', ['id' => $task->id]);
+    }
+
+    public function removeUserFromTask($id, Request $request) 
+    {
+        $task = Task::find($id);
+        if (isset($task)) {
+            $task->users()->detach($request->user_id);
+
+            return redirect()->route('task_detail', ['id' => $task->id]);
         } else {
             return redirect()->route('task_list')->withErrors(trans('messages.tasknotexist'));
         }
