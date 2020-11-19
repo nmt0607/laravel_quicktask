@@ -33,4 +33,50 @@ class TaskController extends Controller
 
         return redirect()->route('task_list');
     }
+    
+    public function taskDetail($id) 
+    {      
+        $task = Task::find($id);
+        if (isset($task)) {
+            $userBelongsTo = $task->users()->get();
+
+            return view('task_detail', [
+                'task' => $task,
+                'users' => $userBelongsTo,
+            ]);
+        } else {
+            return redirect()->back()->withErrors(trans('messages.tasknotexist'));
+        }
+    }
+
+    public function edit($id) 
+    {
+        $task = Task::find($id);
+        if (isset($task)) {
+            $userBelongsTo = $task->users()->get();
+            
+            return view('edit_task', [
+                'task' => $task,
+                'users' => $userBelongsTo,
+            ]);
+        } else {
+            return redirect()->back()->withErrors(trans('messages.tasknotexist'));
+        }
+    }
+
+    public function update($id,TaskRequest $request) 
+    {
+        $task = Task::find($id);     
+        if (isset($task)) {
+            $task->update($request->all());
+            $userBelongsTo = $task->users()->get();
+
+            return view('task_detail', [
+                'task' => $task,
+                'users' => $userBelongsTo,
+            ]);
+        } else {
+            return redirect()->route('task_list')->withErrors(trans('messages.tasknotexist'));
+        }
+    }
 }

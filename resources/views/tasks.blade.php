@@ -41,7 +41,11 @@
                         <tbody>                
                             @foreach ($tasks as $task)
                                 <tr>
-                                    <td class="table-text"><div><a href="{{ route('task_detail', ['id' => $task->id]) }}">{{ $task->name }}</a></div></td>
+                                    <td class="table-text">
+                                        <div>
+                                            <a href="{{ route('task_detail', ['id' => $task->id]) }}">{{ $task->name }}</a>
+                                        </div>
+                                    </td>
                                     <td>
                                         <form action="{{ route('delete_task', ['id' => $task->id]) }}" method="POST">
                                             {{ csrf_field() }}
