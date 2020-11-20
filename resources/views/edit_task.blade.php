@@ -6,8 +6,9 @@
     <div class="col-sm-offset-2 col-sm-8">
         <div class="panel panel-default">
             <div class="panel-heading">
+                @include('common.errors')
                 <form action="{{ route('update_task', ['id' => $task->id]) }}" method="POST">
-                    {{ csrf_field() }}  
+                    @csrf  
                     <label for="task-name" class="col-sm-1 control-label">@lang('messages.task')</label> 
                     <div class="col-sm-4">
                         <input type="text" name="name" class="form-control" value="{{ $task->name }}">
@@ -27,7 +28,11 @@
                         <tbody>
                             @foreach ($users as $user)
                                 <tr>
-                                    <td class="table-text"><div><a href="{{ route('user_detail', ['id' => $user->id]) }}">{{ $user->name }}</a></div></td>
+                                    <td class="table-text">
+                                        <div>
+                                            <a href="{{ route('user_detail', ['id' => $user->id]) }}">{{ $user->name }}</a>
+                                        </div>
+                                    </td>
                                     <td>
                                         <form action="{{ route('remove_user_task', ['id' => $task->id]) }}" method="GET">
                                             {{ csrf_field() }}
@@ -45,7 +50,7 @@
                     @endif
                 </table>
                 <form action="{{ route('add_user_list', ['id' => $task->id]) }}" method="GET" class="form-horizontal">
-                    {{ csrf_field() }}
+                    @csrf
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-6">
                             <button type="submit" class="btn btn-default">

@@ -6,9 +6,9 @@
     <div class="col-sm-offset-2 col-sm-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <div class="panel-heading">
+                @include('common.errors')
                 <form action="{{ route('edit_task', ['id' => $task->id]) }}" method="GET">
-                    {{ csrf_field() }}  
+                    @csrf  
                     <label for="task-name" class="col-sm-1 control-label">@lang('messages.task')</label> 
                     <div class="col-sm-4">
                         {{ $task->name }}  
@@ -16,8 +16,7 @@
                     <button type="submit" class="btn btn-warning">
                         <i class="fa fa-btn fa-pencil"></i>@lang('messages.edit')
                     </button>
-                </form>
-            </div>
+                </form>               
             </div>
             <div class="panel-body">
                 <table class="table table-striped task-table">
@@ -35,8 +34,9 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <form action="{{ route('remove_user_task',['id' => $task->id]) }}" method="GET">
-                                            {{ csrf_field() }}
+                                        <form action="{{ route('remove_user_task', ['id' => $task->id]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
                                             <input type="hidden" name="user_id" value="{{ $user->id }}">
                                             <button type="submit" class="btn btn-danger">
                                                 <i class="fa fa-btn fa-trash"></i>@lang('messages.delete')
@@ -47,11 +47,11 @@
                             @endforeach
                         </tbody>
                     @else
-                       @lang('messages.nouserintask')
+                        @lang('messages.nouserintask')
                     @endif
                 </table>
                 <form action="{{ route('add_user_list', ['id' => $task->id]) }}" method="GET" class="form-horizontal">
-                    {{ csrf_field() }}
+                    @csrf
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-6">
                             <button type="submit" class="btn btn-default">

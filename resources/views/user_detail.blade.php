@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="col-sm-offset-2 col-sm-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <form action="{{ route('edit_user',['id' => $user->id]) }}" method="GET">
-                    {{ csrf_field() }}  
+                @include('common.errors')
+                <form action="{{ route('edit_user', ['id' => $user->id]) }}" method="GET">
+                    @csrf  
                     <label for="task-name" class="col-sm-1 control-label">@lang('messages.user')</label> 
                     <div class="col-sm-4">
                         {{ $user->name }}  
@@ -32,8 +34,9 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <form action="{{ route('remove_task_user', ['id' => $user->id]) }}" method="GET">
-                                            {{ csrf_field() }}
+                                        <form action="{{ route('remove_task_user', ['id' => $user->id]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
                                             <input type="hidden" name="task_id" value="{{ $task->id }}">
                                             <button type="submit" class="btn btn-danger">
                                                 <i class="fa fa-btn fa-trash"></i>@lang('messages.delete')
