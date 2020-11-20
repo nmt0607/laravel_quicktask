@@ -34,4 +34,6 @@ return [
     'taskmax' => 'Tên nhiệm vụ quá dài!',
     'tasknoexist' => 'Nhiệm vụ không tồn tại!',
     'usernoexist' => 'Nhân viên không tồn tại!',
+    'vi' => 'Tiếng Việt',
+    'en' => 'Tiếng Anh',
 ];

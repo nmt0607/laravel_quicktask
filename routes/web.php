@@ -27,7 +27,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('add-task-list/{id}', 'UserController@listTaskCanAdd')->name('add_task_list');
     Route::post('add-task-user/{id}', 'UserController@addTaskToUser')->name('add_task_user');
     Route::delete('remove-task-user/{id}', 'UserController@removeTaskFromUser')->name('remove_task_user');
-    Route::get('language/{locale}','Localization@locate');
+    Route::get('language/{locale}','Localization@locate')->name('language');
     Route::get('edit-user/{id}', 'UserController@edit')->name('edit_user');
     Route::post('update-user/{id}', 'UserController@update')->name('update_user');
     Route::get('edit-task/{id}', 'TaskController@edit')->name('edit_task');

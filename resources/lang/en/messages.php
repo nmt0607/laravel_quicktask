@@ -34,4 +34,6 @@ return [
     'taskmax' => 'Task name is too long',
     'tasknoexist' => 'Task no exist',
     'usernoexist' => 'User no exist',
+    'vi' => 'Vietnamese',
+    'en' => 'English',
 ];
