@@ -21,6 +21,12 @@
                         </a>
                         <a class="navbar-brand" href="{{ route('task_list') }}">
                             @lang('messages.tasklist')
+                        </a>           
+                        <a class="navbar-brand" href="{{ route('language', ['locale' => 'vi']) }}">
+                            @lang('messages.vi')
+                        </a>
+                        <a class="navbar-brand" href="{{ route('language', ['locale' => 'en']) }}">
+                            @lang('messages.en')
                         </a>
                     </div>                                      
                 </div>
